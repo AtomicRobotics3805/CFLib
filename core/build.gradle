@@ -18,10 +18,6 @@ apply from: '../build.common.gradle'
 apply plugin: 'kotlin-android'
 apply from: '../build.dependencies.gradle'
 
-apply plugin: 'maven-publish'
-
-group = 'com.github.AtomicRobotics3805'
-
 
 dependencies {
     implementation 'com.google.ar:core:1.23.0'

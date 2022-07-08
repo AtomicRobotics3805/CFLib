@@ -20,9 +20,9 @@ apply from: '../build.dependencies.gradle'
 
 
 dependencies {
-    implementation 'com.google.ar:core:1.23.0'
+    implementation 'com.google.ar:core:1.31.0'
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
-    implementation "androidx.core:core-ktx:+"
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.acmerobotics.roadrunner:core:0.5.3'
     implementation 'com.github.NoahBres:MeepMeep:2.0.0'

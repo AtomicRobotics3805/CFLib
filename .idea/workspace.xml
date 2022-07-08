@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e93bd24d-4303-44de-8a95-47dd8f2ec519" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CFLib.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinScripting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinScripting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.common.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.dependencies.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/Command.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/CommandGroup.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/CommandScheduler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/Constants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/TelemetryController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/controls/Controls.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/DriveConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/DriverControlled.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/FollowTrajectory.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/MecanumDriveConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/TankDriveConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/Turn.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/drivers/Driver.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/drivers/MecanumDrive.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/drivers/TankDrive.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/localizers/Localizer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/localizers/MecanumDriveWheelLocalizer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/localizers/PoseEstimator.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/localizers/TwoWheelOdometryLocalizer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/driving/localizers/VuforiaLocalizer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/controls/ExampleControls.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/drive/ExampleMecanumDriveConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/localizers/ExampleOdometryConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/localizers/ExampleVuforiaConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/mechanisms/Claw.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/mechanisms/DistanceSensor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/mechanisms/DistanceSensorAlignment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/mechanisms/Intake.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/mechanisms/LED.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/mechanisms/Lift.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/opmodes/ExampleAutonomousOpMode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/opmodes/ExampleTeleOpMode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/routines/ExampleRoutines.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/trajectoryfactory/ExampleTrajectoryFactory.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/example/visualization/ExampleVisualizer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/hardware/DigitalTouchSensor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/hardware/DistanceSensor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/hardware/GamepadEx.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/opmodes/AutonomousOpMode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/opmodes/TeleOpMode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/AssetsTrajectoryManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/AxesSigns.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/BNO055IMUUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/DashboardUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/Encoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/LoggingUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/LynxModuleUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/roadrunner/RegressionUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/subsystems/MotorToPosition.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/subsystems/MoveServo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/subsystems/PowerMotor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/subsystems/Subsystem.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/trajectories/ParallelTrajectory.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/trajectories/ParallelTrajectoryBuilder.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/trajectories/TrajectoryFactory.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/trajectories/TrajectoryUtil.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/utilCommands/CustomCommand.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/utilCommands/Delay.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/utilCommands/DisplacementDelay.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/utilCommands/TelemetryCommand.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/utilCommands/WaitUntil.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/atomicrobotics/cflib/visualization/MeepMeepVisualizer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CFLib" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Script" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2Bfbcu1xBefJXp0YvSwUPBykts2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.15249781" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\REMCodes\Documents\Programming\FTC\CFLib\core" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="CFLib [nativeBinaries]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="nativeBinaries" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.CFLib [nativeBinaries]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e93bd24d-4303-44de-8a95-47dd8f2ec519" name="Changes" comment="" />
+      <created>1657300170090</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657300170090</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+</project>

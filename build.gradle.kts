@@ -23,3 +23,15 @@ dependencies {
 sourceSets.main {
     java.srcDirs("core/src/main/kotlin")
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.atomicrobotics.cflib"
+            artifactId = "cflib"
+            version = "0.0.1"
+
+            from(components["java"])
+        }
+    }
+}

@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-val CFLibVerson = "0.1-SNAPSHOT"
+val CFLibVersion = "0.1-SNAPSHOT"
 
 group "com.atomicrobotics.cflib"
 version "0.1-SNAPSHOT"

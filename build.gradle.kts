@@ -3,10 +3,10 @@ plugins {
     `maven-publish`
 }
 
-val CFLibVersion = "0.1-SNAPSHOT"
+val CFLibVersion = "0.0.1"
 
 group "com.atomicrobotics.cflib"
-version "0.1-SNAPSHOT"
+version "0.0.1"
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.atomicrobotics.cflib"
             artifactId = "cflib"
-            version = "0.0.1"
+            version = CFLibVersion
 
             from(components["java"])
         }

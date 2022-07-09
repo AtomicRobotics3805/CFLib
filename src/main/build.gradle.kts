@@ -1,0 +1,10 @@
+repositories {
+    mavenCentral()
+    maven( url = "https://jitpack.io/" )
+    maven( url = "https://maven.brott.dev/" )
+}
+
+dependencies {
+    implementation("com.acmerobotics.roadrunner:core:0.5.5")
+    implementation("com.github.NoahBres:MeepMeep:2.0.0")
+}

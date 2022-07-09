@@ -1,37 +1,24 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "1.7.10"
-    `maven-publish`
+    kotlin("jvm") version "1.6.21"
 }
 
-val CFLibVersion = "0.0.1"
-
-group "com.atomicrobotics.cflib"
-version "0.0.1"
+group = "com.atomicrobotics.cflib"
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven(url = "https://jitpack.io/")
-    maven(url = "https://maven.brott.dev/")
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-
-    api("com.acmerobotics.roadrunner:core:0.5.5")
+    testImplementation(kotlin("test"))
 }
 
-sourceSets.main {
-    java.srcDirs("core/src/main/kotlin")
+tasks.test {
+    useJUnitPlatform()
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "com.atomicrobotics.cflib"
-            artifactId = "cflib"
-            version = CFLibVersion
-
-            from(components["java"])
-        }
-    }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }

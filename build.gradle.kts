@@ -23,3 +23,15 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.atomicrobotics.cflib"
+            artifactId = "library"
+            version = "0.0.1"
+
+            from(components["java"])
+        }
+    }
+}

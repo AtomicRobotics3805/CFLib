@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    "java"
+    `java-library`
     kotlin("jvm") version "1.6.21"
     `maven-publish`
 }
@@ -10,10 +12,13 @@ version = "0.0.1"
 
 repositories {
     mavenCentral()
+    google()
+    jcenter()
 }
 
 dependencies {
     testImplementation(kotlin("test"))
+    //classpath("com.android.tools.build:gradle:3.1.2")
 }
 
 tasks.test {

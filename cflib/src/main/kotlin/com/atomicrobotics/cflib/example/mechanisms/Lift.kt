@@ -4,8 +4,8 @@ import com.acmerobotics.dashboard.config.Config
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorEx
 import com.qualcomm.robotcore.hardware.DcMotorSimple
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants.opMode
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants.opMode
+import com.atomicrobotics.cflib.Command
 import com.atomicrobotics.cflib.subsystems.PowerMotor
 import com.atomicrobotics.cflib.subsystems.Subsystem
 import com.atomicrobotics.cflib.subsystems.MotorToPosition

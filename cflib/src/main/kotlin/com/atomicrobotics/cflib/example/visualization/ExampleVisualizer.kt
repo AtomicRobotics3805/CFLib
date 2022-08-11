@@ -1,12 +1,12 @@
 package com.atomicrobotics.cflib.example.visualization
 
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.driving.drivers.MecanumDrive
 import com.atomicrobotics.cflib.driving.localizers.TwoWheelOdometryLocalizer
 import com.atomicrobotics.cflib.example.drive.ExampleMecanumDriveConstants
 import com.atomicrobotics.cflib.example.localizers.ExampleOdometryConstants
 import com.atomicrobotics.cflib.example.trajectoryfactory.ExampleTrajectoryFactory
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.sequential
+import com.atomicrobotics.cflib.sequential
 import com.atomicrobotics.cflib.visualization.MeepMeepVisualizer
 
 fun main() {

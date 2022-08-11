@@ -2,8 +2,8 @@ package com.atomicrobotics.cflib.utilCommands
 
 import com.acmerobotics.roadrunner.profile.MotionProfile
 import com.acmerobotics.roadrunner.util.epsilonEquals
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants.drive
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants.drive
+import com.atomicrobotics.cflib.Command
 
 /**
  * This class is a delay that waits until the robot has driven either a certain number of inches or

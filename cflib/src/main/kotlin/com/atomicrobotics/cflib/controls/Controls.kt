@@ -1,8 +1,8 @@
 package com.atomicrobotics.cflib.controls
 
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.CommandScheduler
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.GamepadEx
+import com.atomicrobotics.cflib.CommandScheduler
+import com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.GamepadEx
 
 /**
  * This class manages the controls for TeleOp OpModes. In your project, you should create your own

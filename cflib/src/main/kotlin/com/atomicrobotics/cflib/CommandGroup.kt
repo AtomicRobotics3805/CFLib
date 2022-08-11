@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib
+package com.atomicrobotics.cflib
 
 /**
  * Returns a sequential command group. Should be used in the following format:

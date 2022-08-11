@@ -2,7 +2,7 @@ package com.atomicrobotics.cflib.example.trajectoryfactory
 
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.atomicrobotics.cflib.trajectories.*
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.Constants
 import org.firstinspires.ftc.teamcode.commandFramework.trajectories.*
 
 /**

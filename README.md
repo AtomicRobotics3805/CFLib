@@ -6,3 +6,15 @@ This project contains a complex system to schedule and run various commands, whi
 It also integrates [RoadRunner](https://github.com/acmerobotics/road-runner) and [MeepMeep](https://github.com/NoahBres/MeepMeep)
 to maximize programming efficiency.
 
+### Changelog
+#### 0.0.2:
+Gradle updates
+
+    - Edit gradle imports
+    - Testing
+    - KNOWN ISSUES: com.atomicrobotics.cflib.driving.localizers: all classes/interfaces are broken.
+#### 0.0.1:
+Initial Release
+    
+    - Create all classes
+    - KNOWN ISSUES: com.atomicrobotics.cflib.driving.localizers: all classes/interfaces are broken.

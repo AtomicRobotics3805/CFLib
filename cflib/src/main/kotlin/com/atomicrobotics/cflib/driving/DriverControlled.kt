@@ -2,10 +2,10 @@ package com.atomicrobotics.cflib.driving
 
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.qualcomm.robotcore.hardware.Gamepad
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants.color
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants.drive
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.Constants.color
+import com.atomicrobotics.cflib.Constants.drive
 import com.atomicrobotics.cflib.subsystems.Subsystem
 import com.atomicrobotics.cflib.trajectories.toRadians
 import kotlin.math.*

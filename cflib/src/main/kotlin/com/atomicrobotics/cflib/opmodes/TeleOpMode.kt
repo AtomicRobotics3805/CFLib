@@ -1,10 +1,10 @@
 package com.atomicrobotics.cflib.opmodes
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.CommandScheduler
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.TelemetryController
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.CommandScheduler
+import com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.TelemetryController
 import com.atomicrobotics.cflib.controls.Controls
 import com.atomicrobotics.cflib.driving.drivers.Driver
 import com.atomicrobotics.cflib.subsystems.Subsystem

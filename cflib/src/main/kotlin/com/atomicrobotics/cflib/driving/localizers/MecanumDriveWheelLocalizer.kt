@@ -16,7 +16,9 @@ import com.atomicrobotics.cflib.driving.drivers.MecanumDrive
  * wheels that aren't attached to motors but are attached to encoders that can determine how much
  * the wheels have rotated. Based on how much they've rotated, we can determine the robot's
  * position. The reason why there are four constants assigned outside of the class is because we
- * need them to be outside of the class to use them in the constructor.
+ * need them to be outside the class to use them in the constructor.
+ *
+ * This class is currently broken. We are working to resolve the issue.
  */
 @Config
 class MecanumDriveWheelLocalizer(

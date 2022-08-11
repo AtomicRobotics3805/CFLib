@@ -7,8 +7,8 @@ import org.firstinspires.ftc.robotcore.external.ClassFactory
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix
 import org.firstinspires.ftc.robotcore.external.navigation.*
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.TelemetryController
+import com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.TelemetryController
 import com.atomicrobotics.cflib.trajectories.Pose2d
 import com.atomicrobotics.cflib.trajectories.inchesToMm
 import java.util.*
@@ -17,6 +17,8 @@ import java.util.*
  * Determines the robot's absolute position based on its position relative to Vuforia targets. This
  * technically isn't a localizer, since localizers determine position relative to previous position.
  * To use this object, copy it into the proper package and change the three displacement constants.
+ *
+ * This class is currently broken. We are working to resolve the issue.
  */
 @Suppress("Unused", "MemberVisibilityCanBePrivate")
 class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
@@ -25,13 +27,13 @@ class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
             .translation(constants.CAMERA_FORWARD_DISPLACEMENT, constants.CAMERA_LEFT_DISPLACEMENT, constants.CAMERA_VERTICAL_DISPLACEMENT)
             .multiplied(Orientation.getRotationMatrix(AxesReference.EXTRINSIC, AxesOrder.XZY, AngleUnit.DEGREES, 90f, 90f, 0f))
 
-    override var poseEstimate: Pose2d
+    var poseEstimate: Pose2d
         get() = lastLocation?.let { Pose2d(it) } ?: Pose2d() + offset
         // set should almost never be used
         set(value) {
             offset = value - poseEstimate
         }
-    override var poseVelocity: Pose2d? = null
+    var poseVelocity: Pose2d? = null
 
     private var offset = Pose2d()
 
@@ -140,7 +142,7 @@ class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
         targets!!.activate()
     }
 
-    override fun update() {
+    fun update() {
         // check all the trackable targets to see which one (if any) is visible.
         targetVisible = false
         for (trackable in allTrackables) {

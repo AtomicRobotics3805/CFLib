@@ -1,7 +1,7 @@
 package com.atomicrobotics.cflib.utilCommands
 
 import com.qualcomm.robotcore.util.ElapsedTime
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Command
 import com.atomicrobotics.cflib.subsystems.Subsystem
 
 /**

@@ -1,8 +1,8 @@
 package com.atomicrobotics.cflib.utilCommands
 
 import com.qualcomm.robotcore.util.ElapsedTime
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.TelemetryController
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.TelemetryController
 
 /**
  * This class is used to repeatedly send telemetry messages for a certain period of time.

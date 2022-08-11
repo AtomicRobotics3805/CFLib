@@ -1,7 +1,7 @@
 package com.atomicrobotics.cflib.example.controls
 
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.CommandScheduler
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.CommandScheduler
+import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.controls.Controls
 import com.atomicrobotics.cflib.example.mechanisms.Claw
 import com.atomicrobotics.cflib.example.mechanisms.Lift

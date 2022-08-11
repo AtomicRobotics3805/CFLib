@@ -1,6 +1,6 @@
 package com.atomicrobotics.cflib.utilCommands
 
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Command
 
 /**
  * This class is a type of delay that doesn't finish until a given check returns true. Like other

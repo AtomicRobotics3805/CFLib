@@ -6,8 +6,8 @@ import com.acmerobotics.roadrunner.profile.MotionProfile
 import com.acmerobotics.roadrunner.profile.MotionProfileGenerator.generateSimpleMotionProfile
 import com.acmerobotics.roadrunner.profile.MotionState
 import com.qualcomm.robotcore.util.ElapsedTime
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants.drive
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants.drive
 import com.atomicrobotics.cflib.subsystems.Subsystem
 import com.atomicrobotics.cflib.trajectories.toRadians
 

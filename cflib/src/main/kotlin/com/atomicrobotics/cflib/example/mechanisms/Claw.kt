@@ -2,8 +2,8 @@ package com.atomicrobotics.cflib.example.mechanisms
 
 import com.acmerobotics.dashboard.config.Config
 import com.qualcomm.robotcore.hardware.Servo
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.subsystems.MoveServo
 import com.atomicrobotics.cflib.subsystems.Subsystem
 

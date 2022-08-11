@@ -4,6 +4,9 @@ import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.qualcomm.robotcore.util.ElapsedTime
 import kotlin.math.abs
 
+/**
+ * This class is currently broken. We are working to resolve the issue.
+ */
 class PoseEstimator(
     private val odometryLocalizer: Localizer,
     private val vuforiaLocalizer: VuforiaLocalizer

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib
+package com.atomicrobotics.cflib
 
 import com.acmerobotics.dashboard.FtcDashboard
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry

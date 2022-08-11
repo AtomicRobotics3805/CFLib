@@ -2,7 +2,7 @@ package com.atomicrobotics.cflib.subsystems
 
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorSimple
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Command
 
 /**
  * This command powers a motor and sets it to a certain mode if one is supplied.

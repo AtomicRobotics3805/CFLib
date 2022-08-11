@@ -2,7 +2,7 @@ package com.atomicrobotics.cflib.example.mechanisms
 
 import com.acmerobotics.dashboard.config.Config
 import com.qualcomm.robotcore.hardware.AnalogInput
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.subsystems.Subsystem
 
 /**

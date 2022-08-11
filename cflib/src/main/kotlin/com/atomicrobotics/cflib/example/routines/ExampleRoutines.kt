@@ -1,12 +1,12 @@
 package com.atomicrobotics.cflib.example.routines
 
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants.drive
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants.drive
 import com.atomicrobotics.cflib.example.mechanisms.Claw
 import com.atomicrobotics.cflib.example.mechanisms.Lift
 import com.atomicrobotics.cflib.example.trajectoryfactory.ExampleTrajectoryFactory
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.parallel
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.sequential
+import com.atomicrobotics.cflib.parallel
+import com.atomicrobotics.cflib.sequential
 
 /**
  * This class is an example of how to create routines. Routines are essentially just groups of

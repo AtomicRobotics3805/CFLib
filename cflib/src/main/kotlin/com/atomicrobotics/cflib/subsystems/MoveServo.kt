@@ -2,7 +2,7 @@ package com.atomicrobotics.cflib.subsystems
 
 import com.qualcomm.robotcore.hardware.Servo
 import com.qualcomm.robotcore.util.ElapsedTime
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Command
 import kotlin.math.abs
 
 /**

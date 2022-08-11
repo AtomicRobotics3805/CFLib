@@ -4,7 +4,6 @@ import com.acmerobotics.roadrunner.control.PIDFController
 import com.acmerobotics.roadrunner.drive.DriveSignal
 import com.acmerobotics.roadrunner.followers.HolonomicPIDVAFollower
 import com.acmerobotics.roadrunner.geometry.Pose2d
-import com.acmerobotics.roadrunner.localization.Localizer
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint
@@ -13,14 +12,14 @@ import com.qualcomm.hardware.lynx.LynxModule
 import com.qualcomm.robotcore.hardware.Gamepad
 import com.qualcomm.robotcore.hardware.HardwareMap
 import com.qualcomm.robotcore.hardware.VoltageSensor
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.TelemetryController
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.TelemetryController
 import com.atomicrobotics.cflib.driving.DriveConstants
 import com.atomicrobotics.cflib.driving.FollowTrajectory
 import com.atomicrobotics.cflib.driving.Turn
-import org.firstinspires.ftc.teamcode.commandFramework.roadrunner.DashboardUtil
-import org.firstinspires.ftc.teamcode.commandFramework.roadrunner.LynxModuleUtil
+import com.atomicrobotics.cflib.roadrunner.DashboardUtil
+import com.atomicrobotics.cflib.roadrunner.LynxModuleUtil
 import com.atomicrobotics.cflib.subsystems.Subsystem
 import com.atomicrobotics.cflib.trajectories.ParallelTrajectory
 import com.atomicrobotics.cflib.trajectories.ParallelTrajectoryBuilder
@@ -34,7 +33,7 @@ import java.util.*
 @Suppress("PropertyName", "MemberVisibilityCanBePrivate", "unused")
 abstract class Driver(
     val constants: DriveConstants,
-    val localizer: Localizer,
+    val localizer: com.atomicrobotics.cflib.driving.localizers.Localizer,
     private val startPose: () -> Pose2d
 ) : Subsystem {
 

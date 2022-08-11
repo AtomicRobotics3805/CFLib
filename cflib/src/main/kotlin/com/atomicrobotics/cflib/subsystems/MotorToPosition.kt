@@ -3,8 +3,8 @@ package com.atomicrobotics.cflib.subsystems
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.util.ElapsedTime
 import com.qualcomm.robotcore.util.Range
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Command
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.CommandScheduler
+import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.CommandScheduler
 import com.atomicrobotics.cflib.utilCommands.TelemetryCommand
 import kotlin.math.abs
 import kotlin.math.min

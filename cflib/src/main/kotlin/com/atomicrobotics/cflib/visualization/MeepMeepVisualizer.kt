@@ -7,8 +7,8 @@ import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder
 import com.noahbres.meepmeep.roadrunner.trajectorysequence.SequenceSegment
 import com.noahbres.meepmeep.roadrunner.trajectorysequence.TrajectorySegment
 import com.noahbres.meepmeep.roadrunner.trajectorysequence.TrajectorySequence
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.CommandGroup
-import org.firstinspires.ftc.teamcode.commandFramework.com.atomicrobotics.cflib.Constants
+import com.atomicrobotics.cflib.CommandGroup
+import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.driving.DriveConstants
 import com.atomicrobotics.cflib.driving.FollowTrajectory
 import com.atomicrobotics.cflib.driving.drivers.Driver

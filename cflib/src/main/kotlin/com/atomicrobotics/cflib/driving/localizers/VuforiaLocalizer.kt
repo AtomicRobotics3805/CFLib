@@ -11,6 +11,7 @@ import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.TelemetryController
 import com.atomicrobotics.cflib.trajectories.Pose2d
 import com.atomicrobotics.cflib.trajectories.inchesToMm
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer as FTCVuforiaLocalizer
 import java.util.*
 
 /**
@@ -27,13 +28,13 @@ class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
             .translation(constants.CAMERA_FORWARD_DISPLACEMENT, constants.CAMERA_LEFT_DISPLACEMENT, constants.CAMERA_VERTICAL_DISPLACEMENT)
             .multiplied(Orientation.getRotationMatrix(AxesReference.EXTRINSIC, AxesOrder.XZY, AngleUnit.DEGREES, 90f, 90f, 0f))
 
-    var poseEstimate: Pose2d
+    override var poseEstimate: Pose2d
         get() = lastLocation?.let { Pose2d(it) } ?: Pose2d() + offset
         // set should almost never be used
         set(value) {
             offset = value - poseEstimate
         }
-    var poseVelocity: Pose2d? = null
+    override var poseVelocity: Pose2d? = null
 
     private var offset = Pose2d()
 
@@ -45,7 +46,7 @@ class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
     private val halfTile = 12.0.inchesToMm.toFloat()
 
     private var lastLocation: OpenGLMatrix? = null
-    private lateinit var vuforia: VuforiaLocalizer
+    private lateinit var vuforia: FTCVuforiaLocalizer
 
     private var targetVisible = false
     private var targets: VuforiaTrackables? = null
@@ -67,7 +68,7 @@ class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
          * Note: A preview window is required if you want to view the camera stream on the Driver Station Phone.
          */
         val cameraMonitorViewId: Int = Constants.opMode.hardwareMap.appContext.resources.getIdentifier("cameraMonitorViewId", "id", Constants.opMode.hardwareMap.appContext.packageName)
-        val parameters = VuforiaLocalizer.Parameters(cameraMonitorViewId)
+        val parameters = FTCVuforiaLocalizer.Parameters(cameraMonitorViewId)
 
         parameters.vuforiaLicenseKey = constants.VUFORIA_KEY
 
@@ -142,7 +143,7 @@ class VuforiaLocalizer(val constants: VuforiaConstants) : Localizer {
         targets!!.activate()
     }
 
-    fun update() {
+    override fun update() {
         // check all the trackable targets to see which one (if any) is visible.
         targetVisible = false
         for (trackable in allTrackables) {

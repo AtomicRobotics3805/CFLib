@@ -6,7 +6,7 @@ This project contains a complex system to schedule and run various commands, whi
 It also integrates [RoadRunner](https://github.com/acmerobotics/road-runner) and [MeepMeep](https://github.com/NoahBres/MeepMeep)
 to maximize programming efficiency.
 
-To download the quickstart, head [here](https://docs.atomicrobotics3895.org).
+To download the quickstart, head [here](https://docs.atomicrobotics3805.org).
 
 ### Changelog
 #### 0.0.2:

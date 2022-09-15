@@ -1,1 +1,1 @@
-To view documentation for CFLib, visit https://AtomicRobotics3805.github.io/
+To view documentation for CFLib, visit https://docs.atomicrobotics3805.org/

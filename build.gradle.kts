@@ -8,10 +8,10 @@ plugins {
     kotlin("jvm") version "1.6.20-RC"
 }
 
-val CFLibVersion = "1.3"
+val CFLibVersion = "0.3.0"
 
 group = "com.atomicrobotics.cflib"
-version = "1.3"
+version = "0.3.0"
 
 val pomUrl = "https://github.com/AtomicRobotics3805/CFLib"
 val pomScmUrl = "https://github.com/AtomicRobotics3805/CFLib"

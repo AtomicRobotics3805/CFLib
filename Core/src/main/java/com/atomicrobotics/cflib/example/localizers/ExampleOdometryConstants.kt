@@ -28,6 +28,10 @@ class ExampleOdometryConstants : TwoWheelOdometryConstants {
     var _PERPENDICULAR_X = 0.0 // in; forward offset of the perpendicular wheel
     @JvmField
     var _PERPENDICULAR_Y = 0.0 // in; left offset of the perpendicular wheel
+    @JvmField
+    var _PARALLEL_NAME = "LF" // the name of the wheel that the parallel deadwheel encoder is plugged into
+    @JvmField
+    var _PERPENDICULAR_NAME = "LB" // the name of the wheel that the perpendicular deadwheel encoder is plugged into
 
     override val PARALLEL_X: Double
         get() = _PARALLEL_X
@@ -37,4 +41,8 @@ class ExampleOdometryConstants : TwoWheelOdometryConstants {
         get() = _PERPENDICULAR_X
     override val PERPENDICULAR_Y: Double
         get() = _PERPENDICULAR_Y
+    override val PARALLEL_NAME: String
+        get() = _PARALLEL_NAME
+    override val PERPENDICULAR_NAME: String
+        get() = _PERPENDICULAR_NAME
 }

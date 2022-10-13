@@ -126,4 +126,6 @@ interface TwoWheelOdometryConstants {
     val PARALLEL_Y: Double  // in; left offset of the parallel wheel
     val PERPENDICULAR_X: Double // in; forward offset of the perpendicular wheel
     val PERPENDICULAR_Y: Double // in; left offset of the perpendicular wheel
+    val PARALLEL_NAME: String
+    val PERPENDICULAR_NAME: String
 }

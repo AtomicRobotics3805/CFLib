@@ -3,6 +3,9 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+
+        maven { url 'https://maven.brott.dev/' }
+        maven { url 'https://jitpack.io/' }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +13,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        maven { url 'https://maven.brott.dev/' }
+        maven { url 'https://jitpack.io/' }
     }
 }
 rootProject.name = "CFLib"
-include ':Core'
+include ':core'

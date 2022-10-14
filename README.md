@@ -6,9 +6,15 @@ This project contains a complex system to schedule and run various commands, whi
 It also integrates [RoadRunner](https://github.com/acmerobotics/road-runner) and [MeepMeep](https://github.com/NoahBres/MeepMeep)
 to maximize programming efficiency.
 
-To download the quickstart, head [here](https://docs.atomicrobotics3805.org).
+To install, head [here](https://docs.atomicrobotics3805.org) and follow the directions.
 
 ### Changelog
+#### 2022.10.14
+JitPack release
+
+    - Edit Gradle to work with JitPack (fixes #2)
+    - Upgrade dependencies
+    - Diagnose & fix localizer issues
 #### 0.0.2:
 Gradle updates
 

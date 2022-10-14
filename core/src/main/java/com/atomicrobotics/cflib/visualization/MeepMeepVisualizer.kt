@@ -20,8 +20,8 @@ import com.noahbres.meepmeep.MeepMeep
 import com.noahbres.meepmeep.core.colorscheme.scheme.ColorSchemeBlueDark
 import com.noahbres.meepmeep.core.colorscheme.scheme.ColorSchemeRedDark
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder
-import com.noahbres.meepmeep.roadrunner.trajectorysequence.SequenceSegment
-import com.noahbres.meepmeep.roadrunner.trajectorysequence.TrajectorySegment
+import com.noahbres.meepmeep.roadrunner.trajectorysequence.sequencesegment.SequenceSegment
+import com.noahbres.meepmeep.roadrunner.trajectorysequence.sequencesegment.TrajectorySegment
 import com.noahbres.meepmeep.roadrunner.trajectorysequence.TrajectorySequence
 import com.atomicrobotics.cflib.CommandGroup
 import com.atomicrobotics.cflib.Constants

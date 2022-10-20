@@ -29,6 +29,7 @@ import com.qualcomm.robotcore.hardware.Gamepad
 import com.qualcomm.robotcore.hardware.HardwareMap
 import com.qualcomm.robotcore.hardware.VoltageSensor
 import com.atomicrobotics.cflib.Command
+import com.atomicrobotics.cflib.CommandScheduler
 import com.atomicrobotics.cflib.Constants
 import com.atomicrobotics.cflib.TelemetryController
 import com.atomicrobotics.cflib.driving.DriveConstants
@@ -169,6 +170,7 @@ abstract class Driver(
         for (module in hardwareMap.getAll(LynxModule::class.java)) {
             module.bulkCachingMode = LynxModule.BulkCachingMode.AUTO
         }
+        CommandScheduler.registerSubsystems(localizer)
         localizer.poseEstimate = startPose.invoke()
     }
 

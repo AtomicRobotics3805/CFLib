@@ -36,7 +36,7 @@ import com.atomicrobotics.cflib.roadrunner.Encoder
  * This class is currently broken. We are working to resolve the issue.
  */
 @Config
-class TwoWheelOdometryLocalizer(constants: TwoWheelOdometryConstants) : TwoTrackingWheelLocalizer(listOf(
+class TwoWheelOdometryLocalizer(val constants: TwoWheelOdometryConstants) : TwoTrackingWheelLocalizer(listOf(
     Pose2d(constants.PARALLEL_X, constants.PARALLEL_Y, 0.0),
     Pose2d(constants.PERPENDICULAR_X, constants.PERPENDICULAR_Y, Math.toRadians(90.0))
 )), Localizer {
@@ -63,8 +63,8 @@ class TwoWheelOdometryLocalizer(constants: TwoWheelOdometryConstants) : TwoTrack
      * Initializes the encoders & sets their direction
      */
     override fun initialize() {
-        perpendicularEncoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, "RF"))
-        parallelEncoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, "LF"))
+        perpendicularEncoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, constants.PERPENDICULAR_NAME))
+        parallelEncoder = Encoder(Constants.opMode.hardwareMap.get(DcMotorEx::class.java, constants.PARALLEL_NAME))
 
         if (PERPENDICULAR_REVERSED) perpendicularEncoder.direction = Encoder.Direction.REVERSE
         if (PARALLEL_REVERSED) parallelEncoder.direction = Encoder.Direction.REVERSE

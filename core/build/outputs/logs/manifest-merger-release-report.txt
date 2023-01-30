@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml:1:1-2:57
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml:1:1-2:57
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml:1:1-2:57
+	package
+		ADDED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml:2:11-54
+		INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+		INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+		ADDED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+		INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+		ADDED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml
+		INJECTED from D:\Users\REMCodes\Desktop\CFLib\core\src\main\AndroidManifest.xml

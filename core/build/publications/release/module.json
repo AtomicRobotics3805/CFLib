@@ -1,0 +1,115 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.atomicrobotics3805",
+    "module": "cflib",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "cflib-0.0.1.aar",
+          "url": "cflib-0.0.1.aar",
+          "size": 153610,
+          "sha512": "7a1303f91ac521552fe36b765795437edd0f9b73ef982aaf6d0403626d6c0f5a7bd9c5071b5fee53786017c838f77c028e506545e391ad534c3f9b85e0790a54",
+          "sha256": "1e59011753993bb55d37d74c6de1c16588343a97a5f06348a8bcf66df0d80a18",
+          "sha1": "ce6ace18a1a5a091938b49f062252d83125ecc7a",
+          "md5": "15bb95e0281e278c432b6f136497dd82"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.tensorflow",
+          "module": "tensorflow-lite-task-vision",
+          "version": {
+            "requires": "0.2.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "com.acmerobotics.dashboard",
+          "module": "dashboard",
+          "version": {
+            "requires": "0.4.6"
+          },
+          "excludes": [
+            {
+              "group": "org.firstinspires.ftc",
+              "module": "*"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk7",
+          "version": {
+            "requires": "1.7.10"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-math3",
+          "version": {
+            "requires": "3.6.1"
+          }
+        },
+        {
+          "group": "com.acmerobotics.roadrunner",
+          "module": "core",
+          "version": {
+            "requires": "0.5.5"
+          }
+        },
+        {
+          "group": "com.github.NoahBres",
+          "module": "MeepMeep",
+          "version": {
+            "requires": "2.0.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cflib-0.0.1.aar",
+          "url": "cflib-0.0.1.aar",
+          "size": 153610,
+          "sha512": "7a1303f91ac521552fe36b765795437edd0f9b73ef982aaf6d0403626d6c0f5a7bd9c5071b5fee53786017c838f77c028e506545e391ad534c3f9b85e0790a54",
+          "sha256": "1e59011753993bb55d37d74c6de1c16588343a97a5f06348a8bcf66df0d80a18",
+          "sha1": "ce6ace18a1a5a091938b49f062252d83125ecc7a",
+          "md5": "15bb95e0281e278c432b6f136497dd82"
+        }
+      ]
+    }
+  ]
+}

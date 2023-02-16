@@ -38,7 +38,7 @@ import org.atomicrobotics3805.cflib.driving.drivers.MecanumDrive
  */
 
 class MecanumDriveWheelLocalizer(
-    private val drive: MecanumDrive,
+    private val _drive: () -> MecanumDrive,
     private val useExternalHeading: Boolean = true
 ) : SubsystemLocalizer {
     private var _poseEstimate = Pose2d()
@@ -56,11 +56,12 @@ class MecanumDriveWheelLocalizer(
     private var lastExtHeading = Double.NaN
     private var extHeadingOffset = 0.0
 
+    private lateinit var drive: MecanumDrive
     /**
      * Initializes the encoders & sets their direction
      */
     override fun initialize() {
-
+        drive = _drive.invoke()
     }
 
     override fun update() {

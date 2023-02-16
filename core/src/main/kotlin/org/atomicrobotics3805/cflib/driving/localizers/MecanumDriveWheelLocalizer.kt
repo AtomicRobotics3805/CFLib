@@ -76,7 +76,7 @@ class MecanumDriveWheelLocalizer(
                 wheelDeltas,
                 drive.constants.TRACK_WIDTH,
                 drive.constants.TRACK_WIDTH,
-                drive.constants.LATERAL_MULTIPLIER
+                (drive.constants as MecanumDriveConstants).LATERAL_MULTIPLIER
             )
             val finalHeadingDelta = if (useExternalHeading) {
                 Angle.normDelta(extHeading - lastExtHeading)
@@ -93,7 +93,7 @@ class MecanumDriveWheelLocalizer(
             drive.getWheelVelocities(),
             drive.constants.TRACK_WIDTH,
             drive.constants.TRACK_WIDTH,
-            drive.constants.LATERAL_MULTIPLIER
+            (drive.constants as MecanumDriveConstants).LATERAL_MULTIPLIER
         )
         if (useExternalHeading) {
             poseVelocity = Pose2d(poseVelocity!!.vec(), drive.externalHeadingVelocity)

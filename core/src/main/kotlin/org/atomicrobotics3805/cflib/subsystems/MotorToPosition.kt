@@ -24,6 +24,7 @@ import org.atomicrobotics3805.cflib.CommandScheduler
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 import com.qualcomm.robotcore.util.RobotLog
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -43,7 +44,7 @@ import kotlin.math.sign
  */
 @Suppress("MemberVisibilityCanBePrivate")
 open class MotorToPosition(
-    protected val motor: DcMotor,
+    protected val motor: MotorEx,
     protected val targetPosition: Int,
     protected var speed: Double,
     override val requirements: List<Subsystem> = arrayListOf(),
@@ -70,8 +71,8 @@ open class MotorToPosition(
      * positions, and sets the direction to the sign of the error
      */
     override fun start() {
-        motor.mode = DcMotor.RunMode.RUN_USING_ENCODER
-        error = targetPosition - motor.currentPosition
+        motor.motor.mode = DcMotor.RunMode.RUN_USING_ENCODER
+        error = targetPosition - motor.motor.currentPosition
         direction = sign(error.toDouble())
     }
 
@@ -79,10 +80,10 @@ open class MotorToPosition(
      * Updates the error and direction, then calculates and sets the motor power
      */
     override fun execute() {
-        error = targetPosition - motor.currentPosition
+        error = targetPosition - motor.motor.currentPosition
         direction = sign(error.toDouble())
         val power = kP * abs(error) * speed * direction
-        motor.power = Range.clip(power, -min(speed, 1.0), min(speed, 1.0))
+        motor.motor.power = Range.clip(power, -min(speed, 1.0), min(speed, 1.0))
         cancelIfStalled()
         if(logData) {
             val data = "Power: " + Range.clip(power, -min(speed, 1.0), min(speed, 1.0)) + ", direction: " + direction + ", error: " + error
@@ -94,9 +95,9 @@ open class MotorToPosition(
      * Stops the motor
      */
     override fun end(interrupted: Boolean) {
-        motor.power = speed
-        motor.mode = DcMotor.RunMode.RUN_TO_POSITION
-        motor.targetPosition = motor.currentPosition
+        motor.motor.power = speed
+        motor.motor.mode = DcMotor.RunMode.RUN_TO_POSITION
+        motor.motor.targetPosition = motor.motor.currentPosition
     }
 
     /**
@@ -110,16 +111,16 @@ open class MotorToPosition(
         if (timer.seconds() - roundedLastTime < 1 / savesPerSecond) {
             if (positions.size > 1) {
                 val lastSpeed = abs(positions[positions.size - 2] - positions[positions.size - 1])
-                val currentSpeed = abs(positions[positions.size - 1] - motor.currentPosition)
+                val currentSpeed = abs(positions[positions.size - 1] - motor.motor.currentPosition)
                 if (currentSpeed == 0 || lastSpeed / currentSpeed >= minimumChangeForStall) {
                     CommandScheduler.scheduleCommand(
-                        TelemetryCommand(3.0, "Motor " + motor.deviceName + " Stalled!")
+                        TelemetryCommand(3.0, "Motor " + motor.name + " Stalled!")
                     )
                     isDone = true
                 }
             }
             saveTimes.add(timer.seconds())
-            positions.add(motor.currentPosition)
+            positions.add(motor.motor.currentPosition)
         }
 
     }

@@ -21,7 +21,6 @@
 
 package org.atomicrobotics3805.cflib.driving.drivers
 
-import com.acmerobotics.dashboard.config.Config
 import com.acmerobotics.roadrunner.drive.DriveSignal
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.acmerobotics.roadrunner.kinematics.Kinematics
@@ -36,6 +35,7 @@ import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.driving.DriverControlled
 import org.atomicrobotics3805.cflib.driving.MecanumDriveConstants
 import org.atomicrobotics3805.cflib.driving.localizers.SubsystemLocalizer
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 import java.util.*
 
 /**
@@ -56,16 +56,16 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     // this constraint is used when building trajectories to determine how fast the robot will go
     override val velConstraint: MinVelocityConstraint
         get() = MinVelocityConstraint(listOf(
-            AngularVelocityConstraint(constants.MAX_ANG_VEL),
-            MecanumVelocityConstraint(constants.MAX_VEL, constants.TRACK_WIDTH)
+            AngularVelocityConstraint(mecanumDriveConstants.MAX_ANG_VEL),
+            MecanumVelocityConstraint(mecanumDriveConstants.MAX_VEL, mecanumDriveConstants.TRACK_WIDTH)
         ))
 
     // drive motors, battery voltage sensor, IMU, and the OpMode's hardwareMap
-    private lateinit var leftFront: DcMotorEx
-    private lateinit var leftBack: DcMotorEx
-    private lateinit var rightBack: DcMotorEx
-    private lateinit var rightFront: DcMotorEx
-    private lateinit var motors: List<DcMotorEx>
+    private val leftFront = MotorEx(mecanumDriveConstants.LEFT_FRONT_NAME, mecanumDriveConstants.MOTOR_TYPE, mecanumDriveConstants.TOTAL_GEAR_RATIO)
+    private val leftBack = MotorEx(mecanumDriveConstants.LEFT_BACK_NAME, mecanumDriveConstants.MOTOR_TYPE, mecanumDriveConstants.TOTAL_GEAR_RATIO)
+    private val rightFront = MotorEx(mecanumDriveConstants.RIGHT_FRONT_NAME, mecanumDriveConstants.MOTOR_TYPE, mecanumDriveConstants.TOTAL_GEAR_RATIO)
+    private val rightBack = MotorEx(mecanumDriveConstants.RIGHT_BACK_NAME, mecanumDriveConstants.MOTOR_TYPE, mecanumDriveConstants.TOTAL_GEAR_RATIO)
+    private lateinit var motors: List<MotorEx>
 
     override val rawExternalHeading: Double
         get() = imu.angularOrientation.firstAngle.toDouble()
@@ -81,7 +81,9 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
      * Allows the drivers to control the drivetrain using a gamepad
      * @param gamepad the gamepad that controls the drivetrain
      */
-    override fun driverControlled(gamepad: Gamepad): Command = DriverControlled(gamepad, listOf(this), true, mecanumDriveConstants.POV, mecanumDriveConstants.REVERSE_STRAFE, mecanumDriveConstants.REVERSE_STRAIGHT, mecanumDriveConstants.REVERSE_TURN)
+    override fun driverControlled(gamepad: Gamepad): Command = DriverControlled(
+        gamepad, listOf(this), true, (mecanumDriveConstants as MecanumDriveConstants).POV,
+        mecanumDriveConstants.REVERSE_STRAFE, mecanumDriveConstants.REVERSE_STRAIGHT, mecanumDriveConstants.REVERSE_TURN)
 
     /**
      * Initializes the drivetrain. This includes initializing the IMU, motor, and the battery
@@ -90,41 +92,41 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     override fun initialize() {
         super.initialize()
         // initializes the motors
-        constants as MecanumDriveConstants
-        leftFront = hardwareMap.get(DcMotorEx::class.java, constants.LEFT_FRONT_NAME)
-        leftBack = hardwareMap.get(DcMotorEx::class.java, constants.LEFT_BACK_NAME)
-        rightBack = hardwareMap.get(DcMotorEx::class.java, constants.RIGHT_BACK_NAME)
-        rightFront = hardwareMap.get(DcMotorEx::class.java, constants.RIGHT_FRONT_NAME)
+        mecanumDriveConstants as MecanumDriveConstants
+        leftFront.initialize()
+        leftBack.initialize()
+        rightBack.initialize()
+        rightFront.initialize()
         motors = listOf(leftFront, leftBack, rightBack, rightFront)
         // sets the achieveableMaxRPMFraction for each motor to 1.0
         for (motor in motors) {
-            val motorConfigurationType = motor.motorType.clone()
+            val motorConfigurationType = motor.motor.motorType.clone()
             motorConfigurationType.achieveableMaxRPMFraction = 1.0
-            motor.motorType = motorConfigurationType
+            motor.motor.motorType = motorConfigurationType
         }
         // sets the RunMode for each motor
-        if (constants.IS_RUN_USING_ENCODER) {
+        if (mecanumDriveConstants.IS_RUN_USING_ENCODER) {
             for (motor in motors) {
-                motor.mode = RunMode.STOP_AND_RESET_ENCODER
-                motor.mode = RunMode.RUN_USING_ENCODER
+                motor.motor.mode = RunMode.STOP_AND_RESET_ENCODER
+                motor.motor.mode = RunMode.RUN_USING_ENCODER
             }
             // sets the motors' PIDFCoefficients
-            setPIDFCoefficients(constants.MOTOR_VEL_PID)
+            setPIDFCoefficients(mecanumDriveConstants.MOTOR_VEL_PID)
         }
         else {
             for (motor in motors) {
-                motor.mode = RunMode.RUN_WITHOUT_ENCODER
+                motor.motor.mode = RunMode.RUN_WITHOUT_ENCODER
             }
         }
         // sets the zero power behavior for each motor
         for (motor in motors) {
-            motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
+            motor.motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
         }
         // reverses motors if necessary
-        leftBack.direction = constants.LEFT_BACK_DIRECTION
-        leftFront.direction = constants.LEFT_FRONT_DIRECTION
-        rightBack.direction = constants.RIGHT_BACK_DIRECTION
-        rightFront.direction = constants.RIGHT_FRONT_DIRECTION
+        leftBack.motor.direction = mecanumDriveConstants.LEFT_BACK_DIRECTION
+        leftFront.motor.direction = mecanumDriveConstants.LEFT_FRONT_DIRECTION
+        rightBack.motor.direction = mecanumDriveConstants.RIGHT_BACK_DIRECTION
+        rightFront.motor.direction = mecanumDriveConstants.RIGHT_FRONT_DIRECTION
     }
 
     /**
@@ -134,7 +136,7 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     fun getWheelPositions(): List<Double> {
         val wheelPositions: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelPositions.add(constants.encoderTicksToInches(motor.currentPosition.toDouble()))
+            wheelPositions.add(mecanumDriveConstants.encoderTicksToInches(motor.motor.currentPosition.toDouble()))
         }
         return wheelPositions
     }
@@ -146,7 +148,7 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     fun getWheelVelocities(): List<Double> {
         val wheelVelocities: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelVelocities.add(constants.encoderTicksToInches(motor.velocity))
+            wheelVelocities.add(mecanumDriveConstants.encoderTicksToInches(motor.motor.velocity))
         }
         return wheelVelocities
     }
@@ -159,10 +161,10 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
      * @param frontRight the power for the front right motor
      */
     private fun setMotorPowers(frontLeft: Double, backLeft: Double, backRight: Double, frontRight: Double) {
-        leftFront.power = frontLeft
-        leftBack.power = backLeft
-        rightBack.power = backRight
-        rightFront.power = frontRight
+        leftFront.motor.power = frontLeft
+        leftBack.motor.power = backLeft
+        rightBack.motor.power = backRight
+        rightFront.motor.power = frontRight
     }
 
     /**
@@ -172,22 +174,22 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     override fun setDriveSignal(driveSignal: DriveSignal) {
         val velocities = MecanumKinematics.robotToWheelVelocities(
             driveSignal.vel,
-            constants.TRACK_WIDTH,
-            constants.TRACK_WIDTH,
-            (constants as MecanumDriveConstants).LATERAL_MULTIPLIER
+            mecanumDriveConstants.TRACK_WIDTH,
+            mecanumDriveConstants.TRACK_WIDTH,
+            (mecanumDriveConstants as MecanumDriveConstants).LATERAL_MULTIPLIER
         )
         val accelerations = MecanumKinematics.robotToWheelAccelerations(
             driveSignal.accel,
-            constants.TRACK_WIDTH,
-            constants.TRACK_WIDTH,
-            constants.LATERAL_MULTIPLIER
+            mecanumDriveConstants.TRACK_WIDTH,
+            mecanumDriveConstants.TRACK_WIDTH,
+            mecanumDriveConstants.LATERAL_MULTIPLIER
         )
         val powers = Kinematics.calculateMotorFeedforward(
             velocities,
             accelerations,
-            constants.kV,
-            constants.kA,
-            constants.kStatic
+            mecanumDriveConstants.kV,
+            mecanumDriveConstants.kA,
+            mecanumDriveConstants.kStatic
         )
         setMotorPowers(powers[0], powers[1], powers[2], powers[3])
     }
@@ -201,7 +203,7 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
             drivePower,
             1.0,
             1.0,
-            (constants as MecanumDriveConstants).LATERAL_MULTIPLIER
+            (mecanumDriveConstants as MecanumDriveConstants).LATERAL_MULTIPLIER
         )
         setMotorPowers(powers[0], powers[1], powers[2], powers[3])
     }
@@ -217,13 +219,13 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
             coefficients.f * 12 / batteryVoltageSensor.voltage
         )
         for (motor in motors) {
-            motor.setPIDFCoefficients(RunMode.RUN_USING_ENCODER, compensatedCoefficients)
+            motor.motor.setPIDFCoefficients(RunMode.RUN_USING_ENCODER, compensatedCoefficients)
         }
     }
 
     fun setMode(mode: RunMode) {
         for (motor in motors) {
-            motor.mode = mode
+            motor.motor.mode = mode
         }
     }
 }

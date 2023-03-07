@@ -16,11 +16,12 @@
 */
 package org.atomicrobotics3805.cflib.driving
 
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 
 @Suppress("PropertyName")
 interface TankDriveConstants : DriveConstants {
-
+    // TODO: Figure out how to use MotorEx instead of DcMotorSimple
     val LEFT_DIRECTION: DcMotorSimple.Direction
     val RIGHT_DIRECTION: DcMotorSimple.Direction
     val LEFT_NAMES: List<String>

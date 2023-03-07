@@ -56,7 +56,7 @@ abstract class TeleOpMode(private val controls: Controls,
 
     override fun runOpMode() {
         try {
-            // setting constants
+            // setting mecanumDriveConstants
             Constants.opMode = this
             if (Constants.color == Constants.Color.UNKNOWN)
                 Constants.color = color

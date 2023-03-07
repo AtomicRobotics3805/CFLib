@@ -21,19 +21,17 @@
 
 package org.atomicrobotics3805.cflib.driving.drivers
 
-import com.acmerobotics.dashboard.config.Config
 import com.acmerobotics.roadrunner.drive.DriveSignal
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.acmerobotics.roadrunner.kinematics.Kinematics
 import com.acmerobotics.roadrunner.kinematics.TankKinematics
 import com.acmerobotics.roadrunner.trajectory.constraints.*
 import com.qualcomm.robotcore.hardware.*
-import com.qualcomm.robotcore.hardware.DcMotor.RunMode
-import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.driving.DriverControlled
 import org.atomicrobotics3805.cflib.driving.TankDriveConstants
 import org.atomicrobotics3805.cflib.driving.localizers.SubsystemLocalizer
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 import java.util.*
 
 /**
@@ -59,9 +57,10 @@ class TankDrive(constants: TankDriveConstants,
         ))
 
     // drive motors
-    private lateinit var motors: List<List<DcMotorEx>>
-    private lateinit var leftMotors: List<DcMotorEx>
-    private lateinit var rightMotors: List<DcMotorEx>
+    private lateinit var leftMotors: List<MotorEx>
+    private lateinit var rightMotors: List<MotorEx>
+    private lateinit var motors: List<List<MotorEx>>
+
 
     override val rawExternalHeading: Double
         get() = imu.angularOrientation.firstAngle.toDouble()
@@ -87,31 +86,32 @@ class TankDrive(constants: TankDriveConstants,
         super.initialize()
         // initializes the motors
         constants as TankDriveConstants
-        val mutableList: MutableList<DcMotorEx> = mutableListOf()
+        val mutableList: MutableList<MotorEx> = mutableListOf()
         for (i in 0 until constants.LEFT_NAMES.size) {
-            mutableList.add(hardwareMap.get(DcMotorEx::class.java, constants.LEFT_NAMES[i]))
+            mutableList.add(MotorEx(constants.LEFT_NAMES[i], constants.MOTOR_TYPE, constants.TOTAL_GEAR_RATIO))
         }
         leftMotors = mutableList;
         mutableList.clear()
         for (i in 0 until constants.RIGHT_NAMES.size) {
-            mutableList.add(hardwareMap.get(DcMotorEx::class.java, constants.RIGHT_NAMES[i]))
+            mutableList.add(MotorEx(constants.RIGHT_NAMES[i], constants.MOTOR_TYPE, constants.TOTAL_GEAR_RATIO))
         }
         rightMotors = mutableList;
         motors = listOf(leftMotors, rightMotors)
         // sets the achieveableMaxRPMFraction for each motor to 1.0
         for (motorGroup in motors) {
             for(motor in motorGroup) {
-                val motorConfigurationType = motor.motorType.clone()
+                motor.initialize()
+                val motorConfigurationType = motor.motor.motorType.clone()
                 motorConfigurationType.achieveableMaxRPMFraction = 1.0
-                motor.motorType = motorConfigurationType
+                motor.motor.motorType = motorConfigurationType
             }
         }
         // sets the RunMode for each motor
         if (constants.IS_RUN_USING_ENCODER) {
             for (motorGroup in motors) {
                 for(motor in motorGroup) {
-                    motor.mode = RunMode.STOP_AND_RESET_ENCODER
-                    motor.mode = RunMode.RUN_USING_ENCODER
+                    motor.motor.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
+                    motor.motor.mode = DcMotor.RunMode.RUN_USING_ENCODER
                 }
             }
             // sets the motors' PIDFCoefficients
@@ -120,22 +120,22 @@ class TankDrive(constants: TankDriveConstants,
         else {
             for (motorGroup in motors) {
                 for (motor in motorGroup) {
-                    motor.mode = RunMode.RUN_WITHOUT_ENCODER
+                    motor.motor.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
                 }
             }
         }
         // sets the zero power behavior for each motor
         for (motorGroup in motors) {
             for (motor in motorGroup) {
-                motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
+                motor.motor.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.BRAKE
             }
         }
         // reverses motors if necessary
         for(motor in leftMotors) {
-            motor.direction = constants.LEFT_DIRECTION
+            motor.motor.direction = constants.LEFT_DIRECTION
         }
         for (motor in rightMotors) {
-            motor.direction = constants.RIGHT_DIRECTION
+            motor.motor.direction = constants.RIGHT_DIRECTION
         }
     }
 
@@ -146,7 +146,7 @@ class TankDrive(constants: TankDriveConstants,
     fun getWheelPositions(): List<Double> {
         val wheelPositions: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelPositions.add(constants.encoderTicksToInches(motor[0].currentPosition.toDouble()))
+            wheelPositions.add(constants.encoderTicksToInches(motor[0].motor.currentPosition.toDouble()))
         }
         return wheelPositions
     }
@@ -158,7 +158,7 @@ class TankDrive(constants: TankDriveConstants,
     fun getWheelVelocities(): List<Double> {
         val wheelVelocities: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelVelocities.add(constants.encoderTicksToInches(motor[0].velocity))
+            wheelVelocities.add(constants.encoderTicksToInches(motor[0].motor.velocity))
         }
         return wheelVelocities
     }
@@ -170,10 +170,10 @@ class TankDrive(constants: TankDriveConstants,
      */
     private fun setMotorPowers(leftPower: Double, rightPower: Double) {
         for(motor in leftMotors) {
-            motor.power = leftPower
+            motor.motor.power = leftPower
         }
         for(motor in rightMotors) {
-            motor.power = rightPower
+            motor.motor.power = rightPower
         }
     }
 
@@ -224,7 +224,7 @@ class TankDrive(constants: TankDriveConstants,
         )
         for (motorGroup in motors) {
             for (motor in motorGroup) {
-                motor.setPIDFCoefficients(RunMode.RUN_USING_ENCODER, compensatedCoefficients)
+                motor.motor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, compensatedCoefficients)
             }
         }
     }

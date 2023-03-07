@@ -29,7 +29,7 @@ import org.atomicrobotics3805.cflib.roadrunner.Encoder
  * Determines position relative to previous position based on odometry wheels. Odometry wheels are
  * wheels that aren't attached to motors but are attached to encoders that can determine how much
  * the wheels have rotated. Based on how much they've rotated, we can determine the robot's
- * position. The reason why there are four constants assigned outside of the class is because we
+ * position. The reason why there are four mecanumDriveConstants assigned outside of the class is because we
  * need them to be outside of the class to use them in the constructor.
  */
 class TwoWheelOdometryLocalizer(val constants: TwoWheelOdometryConstants) : TwoTrackingWheelLocalizer(listOf(

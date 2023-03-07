@@ -52,9 +52,9 @@ abstract class AutonomousOpMode(private val color: Constants.Color,
 
     override fun runOpMode() {
         try {
-            telemetry.addLine("Setting constants")
+            telemetry.addLine("Setting mecanumDriveConstants")
             telemetry.update()
-            // setting constants
+            // setting mecanumDriveConstants
             Constants.opMode = this
             Constants.color = color
             Constants.drive = drive

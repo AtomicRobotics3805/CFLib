@@ -18,7 +18,6 @@
 
 package org.atomicrobotics3805.cflib.driving.localizers
 
-import com.acmerobotics.dashboard.config.Config
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.acmerobotics.roadrunner.kinematics.Kinematics
 import com.acmerobotics.roadrunner.kinematics.MecanumKinematics
@@ -31,7 +30,7 @@ import org.atomicrobotics3805.cflib.driving.drivers.MecanumDrive
  * Determines position relative to previous position based on odometry wheels. Odometry wheels are
  * wheels that aren't attached to motors but are attached to encoders that can determine how much
  * the wheels have rotated. Based on how much they've rotated, we can determine the robot's
- * position. The reason why there are four constants assigned outside of the class is because we
+ * position. The reason why there are four mecanumDriveConstants assigned outside of the class is because we
  * need them to be outside the class to use them in the constructor.
  *
  * This class is currently broken. We are working to resolve the issue.
@@ -65,7 +64,7 @@ class MecanumDriveWheelLocalizer(
     }
 
     override fun update() {
-        drive.constants as MecanumDriveConstants
+        drive.mecanumDriveConstants as MecanumDriveConstants
         val wheelPositions = drive.getWheelPositions()
         val extHeading = if (useExternalHeading) drive.rawExternalHeading else Double.NaN
         if (lastWheelPositions.isNotEmpty()) {
@@ -74,9 +73,9 @@ class MecanumDriveWheelLocalizer(
                 .map { it.first - it.second }
             val robotPoseDelta = MecanumKinematics.wheelToRobotVelocities(
                 wheelDeltas,
-                drive.constants.TRACK_WIDTH,
-                drive.constants.TRACK_WIDTH,
-                (drive.constants as MecanumDriveConstants).LATERAL_MULTIPLIER
+                drive.mecanumDriveConstants.TRACK_WIDTH,
+                drive.mecanumDriveConstants.TRACK_WIDTH,
+                (drive.mecanumDriveConstants as MecanumDriveConstants).LATERAL_MULTIPLIER
             )
             val finalHeadingDelta = if (useExternalHeading) {
                 Angle.normDelta(extHeading - lastExtHeading)
@@ -91,9 +90,9 @@ class MecanumDriveWheelLocalizer(
 
         poseVelocity = MecanumKinematics.wheelToRobotVelocities(
             drive.getWheelVelocities(),
-            drive.constants.TRACK_WIDTH,
-            drive.constants.TRACK_WIDTH,
-            (drive.constants as MecanumDriveConstants).LATERAL_MULTIPLIER
+            drive.mecanumDriveConstants.TRACK_WIDTH,
+            drive.mecanumDriveConstants.TRACK_WIDTH,
+            (drive.mecanumDriveConstants as MecanumDriveConstants).LATERAL_MULTIPLIER
         )
         if (useExternalHeading) {
             poseVelocity = Pose2d(poseVelocity!!.vec(), drive.externalHeadingVelocity)

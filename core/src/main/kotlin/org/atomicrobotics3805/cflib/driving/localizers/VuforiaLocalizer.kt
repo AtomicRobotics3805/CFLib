@@ -33,7 +33,7 @@ import java.util.*
 /**
  * Determines the robot's absolute position based on its position relative to Vuforia targets. This
  * technically isn't a localizer, since localizers determine position relative to previous position.
- * To use this object, copy it into the proper package and change the three displacement constants.
+ * To use this object, copy it into the proper package and change the three displacement mecanumDriveConstants.
  *
  * This class is currently broken. We are working to resolve the issue.
  */

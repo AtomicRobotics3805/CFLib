@@ -23,6 +23,6 @@ interface TankDriveConstants : DriveConstants {
 
     val LEFT_DIRECTION: DcMotorSimple.Direction
     val RIGHT_DIRECTION: DcMotorSimple.Direction
-    val LEFT_NAME: String
-    val RIGHT_NAME: String
+    val LEFT_NAMES: List<String>
+    val RIGHT_NAMES: List<String>
 }

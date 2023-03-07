@@ -59,9 +59,9 @@ class TankDrive(constants: TankDriveConstants,
         ))
 
     // drive motors
-    private lateinit var left: DcMotorEx
-    private lateinit var right: DcMotorEx
-    private lateinit var motors: List<DcMotorEx>
+    private lateinit var motors: List<List<DcMotorEx>>
+    private lateinit var leftMotors: List<DcMotorEx>
+    private lateinit var rightMotors: List<DcMotorEx>
 
     override val rawExternalHeading: Double
         get() = imu.angularOrientation.firstAngle.toDouble()
@@ -87,58 +87,78 @@ class TankDrive(constants: TankDriveConstants,
         super.initialize()
         // initializes the motors
         constants as TankDriveConstants
-        left = hardwareMap.get(DcMotorEx::class.java, constants.LEFT_NAME)
-        right = hardwareMap.get(DcMotorEx::class.java,  constants.RIGHT_NAME)
-        motors = listOf(left, right)
+        val mutableList: MutableList<DcMotorEx> = mutableListOf()
+        for (i in 0 until constants.LEFT_NAMES.size) {
+            mutableList.add(hardwareMap.get(DcMotorEx::class.java, constants.LEFT_NAMES[i]))
+        }
+        leftMotors = mutableList;
+        mutableList.clear()
+        for (i in 0 until constants.RIGHT_NAMES.size) {
+            mutableList.add(hardwareMap.get(DcMotorEx::class.java, constants.RIGHT_NAMES[i]))
+        }
+        rightMotors = mutableList;
+        motors = listOf(leftMotors, rightMotors)
         // sets the achieveableMaxRPMFraction for each motor to 1.0
-        for (motor in motors) {
-            val motorConfigurationType = motor.motorType.clone()
-            motorConfigurationType.achieveableMaxRPMFraction = 1.0
-            motor.motorType = motorConfigurationType
+        for (motorGroup in motors) {
+            for(motor in motorGroup) {
+                val motorConfigurationType = motor.motorType.clone()
+                motorConfigurationType.achieveableMaxRPMFraction = 1.0
+                motor.motorType = motorConfigurationType
+            }
         }
         // sets the RunMode for each motor
         if (constants.IS_RUN_USING_ENCODER) {
-            for (motor in motors) {
-                motor.mode = RunMode.STOP_AND_RESET_ENCODER
-                motor.mode = RunMode.RUN_USING_ENCODER
+            for (motorGroup in motors) {
+                for(motor in motorGroup) {
+                    motor.mode = RunMode.STOP_AND_RESET_ENCODER
+                    motor.mode = RunMode.RUN_USING_ENCODER
+                }
             }
             // sets the motors' PIDFCoefficients
             setPIDFCoefficients(constants.MOTOR_VEL_PID)
         }
         else {
-            for (motor in motors) {
-                motor.mode = RunMode.RUN_WITHOUT_ENCODER
+            for (motorGroup in motors) {
+                for (motor in motorGroup) {
+                    motor.mode = RunMode.RUN_WITHOUT_ENCODER
+                }
             }
         }
         // sets the zero power behavior for each motor
-        for (motor in motors) {
-            motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
+        for (motorGroup in motors) {
+            for (motor in motorGroup) {
+                motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
+            }
         }
         // reverses motors if necessary
-        left.direction = constants.LEFT_DIRECTION
-        right.direction = constants.RIGHT_DIRECTION
+        for(motor in leftMotors) {
+            motor.direction = constants.LEFT_DIRECTION
+        }
+        for (motor in rightMotors) {
+            motor.direction = constants.RIGHT_DIRECTION
+        }
     }
 
     /**
-     * Returns a list of how far each wheel has turned in inches
-     * @return how far each wheel has turned in inches
+     * Returns a list of how far each tread has turned in inches
+     * @return how far each tread has turned in inches
      */
     fun getWheelPositions(): List<Double> {
         val wheelPositions: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelPositions.add(constants.encoderTicksToInches(motor.currentPosition.toDouble()))
+            wheelPositions.add(constants.encoderTicksToInches(motor[0].currentPosition.toDouble()))
         }
         return wheelPositions
     }
 
     /**
-     * Returns a list of how fast each wheel is turning in inches per second
-     * @return how fast each wheel is turning in inches per second
+     * Returns a list of how fast each tread is turning in inches per second
+     * @return how fast each tread is turning in inches per second
      */
     fun getWheelVelocities(): List<Double> {
         val wheelVelocities: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelVelocities.add(constants.encoderTicksToInches(motor.velocity))
+            wheelVelocities.add(constants.encoderTicksToInches(motor[0].velocity))
         }
         return wheelVelocities
     }
@@ -149,8 +169,12 @@ class TankDrive(constants: TankDriveConstants,
      * @param rightPower the power for the right motor
      */
     private fun setMotorPowers(leftPower: Double, rightPower: Double) {
-        left.power = leftPower
-        right.power = rightPower
+        for(motor in leftMotors) {
+            motor.power = leftPower
+        }
+        for(motor in rightMotors) {
+            motor.power = rightPower
+        }
     }
 
     /**
@@ -198,8 +222,10 @@ class TankDrive(constants: TankDriveConstants,
             coefficients.p, coefficients.i, coefficients.d,
             coefficients.f * 12 / batteryVoltageSensor.voltage
         )
-        for (motor in motors) {
-            motor.setPIDFCoefficients(RunMode.RUN_USING_ENCODER, compensatedCoefficients)
+        for (motorGroup in motors) {
+            for (motor in motorGroup) {
+                motor.setPIDFCoefficients(RunMode.RUN_USING_ENCODER, compensatedCoefficients)
+            }
         }
     }
 }

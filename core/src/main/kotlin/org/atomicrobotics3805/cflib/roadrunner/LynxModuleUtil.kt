@@ -40,7 +40,7 @@ object LynxModuleUtil {
      */
     fun getFirmwareVersion(module: LynxModule): LynxFirmwareVersion? {
         val versionString = module.nullableFirmwareVersionString ?: return null
-        val parts = versionString.split("[ :,]+").toTypedArray()
+        val parts = versionString.split(Regex("[ :,]+")).toTypedArray()
         return try {
             // note: for now, we ignore the hardware entry
             LynxFirmwareVersion(parts[3].toInt(), parts[5].toInt(), parts[7].toInt())

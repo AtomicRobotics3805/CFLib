@@ -16,7 +16,7 @@
 */
 package org.atomicrobotics3805.cflib.driving
 
-import com.qualcomm.robotcore.hardware.DcMotorSimple
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 
 @Suppress("PropertyName")
 interface MecanumDriveConstants : DriveConstants {
@@ -26,14 +26,10 @@ interface MecanumDriveConstants : DriveConstants {
     val DRIFT_TURN_MULTIPLIER: Double
     val BACKWARD_DRIFT_MULTIPLIER: Double
     val RIGHT_DRIFT_MULTIPLIER: Double
-    val LEFT_FRONT_DIRECTION: DcMotorSimple.Direction
-    val LEFT_BACK_DIRECTION: DcMotorSimple.Direction
-    val RIGHT_FRONT_DIRECTION: DcMotorSimple.Direction
-    val RIGHT_BACK_DIRECTION: DcMotorSimple.Direction
-    val LEFT_FRONT_NAME: String
-    val LEFT_BACK_NAME: String
-    val RIGHT_FRONT_NAME: String
-    val RIGHT_BACK_NAME: String
+    val LEFT_FRONT_MOTOR: MotorEx
+    val RIGHT_FRONT_MOTOR: MotorEx
+    val LEFT_BACK_MOTOR: MotorEx
+    val RIGHT_BACK_MOTOR: MotorEx
     val POV: DriverControlled.POV
     val REVERSE_STRAFE: Boolean
     val REVERSE_STRAIGHT: Boolean

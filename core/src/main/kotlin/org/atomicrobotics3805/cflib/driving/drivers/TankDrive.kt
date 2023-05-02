@@ -21,19 +21,17 @@
 
 package org.atomicrobotics3805.cflib.driving.drivers
 
-import com.acmerobotics.dashboard.config.Config
 import com.acmerobotics.roadrunner.drive.DriveSignal
 import com.acmerobotics.roadrunner.geometry.Pose2d
 import com.acmerobotics.roadrunner.kinematics.Kinematics
 import com.acmerobotics.roadrunner.kinematics.TankKinematics
 import com.acmerobotics.roadrunner.trajectory.constraints.*
 import com.qualcomm.robotcore.hardware.*
-import com.qualcomm.robotcore.hardware.DcMotor.RunMode
-import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.driving.DriverControlled
 import org.atomicrobotics3805.cflib.driving.TankDriveConstants
 import org.atomicrobotics3805.cflib.driving.localizers.SubsystemLocalizer
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 import java.util.*
 
 /**
@@ -59,9 +57,9 @@ class TankDrive(constants: TankDriveConstants,
         ))
 
     // drive motors
-    private lateinit var left: DcMotorEx
-    private lateinit var right: DcMotorEx
-    private lateinit var motors: List<DcMotorEx>
+    private val left = constants.LEFT_MOTORS
+    private val right = constants.RIGHT_MOTORS
+    private lateinit var motors: List<MotorEx>
 
     override val rawExternalHeading: Double
         get() = imu.angularOrientation.firstAngle.toDouble()
@@ -87,36 +85,33 @@ class TankDrive(constants: TankDriveConstants,
         super.initialize()
         // initializes the motors
         constants as TankDriveConstants
-        left = hardwareMap.get(DcMotorEx::class.java, constants.LEFT_NAME)
-        right = hardwareMap.get(DcMotorEx::class.java,  constants.RIGHT_NAME)
+        left.initialize()
+        right.initialize()
         motors = listOf(left, right)
         // sets the achieveableMaxRPMFraction for each motor to 1.0
         for (motor in motors) {
-            val motorConfigurationType = motor.motorType.clone()
+            val motorConfigurationType = motor.getMotorType().clone()
             motorConfigurationType.achieveableMaxRPMFraction = 1.0
-            motor.motorType = motorConfigurationType
+            motor.setMotorType(motorConfigurationType)
         }
         // sets the RunMode for each motor
         if (constants.IS_RUN_USING_ENCODER) {
             for (motor in motors) {
-                motor.mode = RunMode.STOP_AND_RESET_ENCODER
-                motor.mode = RunMode.RUN_USING_ENCODER
+                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER)
+                motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER)
             }
             // sets the motors' PIDFCoefficients
             setPIDFCoefficients(constants.MOTOR_VEL_PID)
         }
         else {
             for (motor in motors) {
-                motor.mode = RunMode.RUN_WITHOUT_ENCODER
+                motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER)
             }
         }
         // sets the zero power behavior for each motor
         for (motor in motors) {
-            motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
+            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
         }
-        // reverses motors if necessary
-        left.direction = constants.LEFT_DIRECTION
-        right.direction = constants.RIGHT_DIRECTION
     }
 
     /**
@@ -126,7 +121,7 @@ class TankDrive(constants: TankDriveConstants,
     fun getWheelPositions(): List<Double> {
         val wheelPositions: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelPositions.add(constants.encoderTicksToInches(motor.currentPosition.toDouble()))
+            wheelPositions.add(constants.encoderTicksToInches(motor.getCurrentPosition().toDouble()))
         }
         return wheelPositions
     }
@@ -138,7 +133,7 @@ class TankDrive(constants: TankDriveConstants,
     fun getWheelVelocities(): List<Double> {
         val wheelVelocities: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelVelocities.add(constants.encoderTicksToInches(motor.velocity))
+            wheelVelocities.add(constants.encoderTicksToInches(motor.getVelocity()))
         }
         return wheelVelocities
     }
@@ -149,8 +144,8 @@ class TankDrive(constants: TankDriveConstants,
      * @param rightPower the power for the right motor
      */
     private fun setMotorPowers(leftPower: Double, rightPower: Double) {
-        left.power = leftPower
-        right.power = rightPower
+        left.setPower(leftPower)
+        right.setPower(rightPower)
     }
 
     /**
@@ -199,7 +194,7 @@ class TankDrive(constants: TankDriveConstants,
             coefficients.f * 12 / batteryVoltageSensor.voltage
         )
         for (motor in motors) {
-            motor.setPIDFCoefficients(RunMode.RUN_USING_ENCODER, compensatedCoefficients)
+            motor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, compensatedCoefficients)
         }
     }
 }

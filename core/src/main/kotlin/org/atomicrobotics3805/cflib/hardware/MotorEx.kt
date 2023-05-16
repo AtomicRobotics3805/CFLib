@@ -1,18 +1,16 @@
 package org.atomicrobotics3805.cflib.hardware
 
+import com.qualcomm.robotcore.hardware.*
 import org.atomicrobotics3805.cflib.Constants.opMode
-import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotor.RunMode
 import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior
-import com.qualcomm.robotcore.hardware.DcMotorEx
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction
-import com.qualcomm.robotcore.hardware.PIDCoefficients
-import com.qualcomm.robotcore.hardware.PIDFCoefficients
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit
 import kotlin.math.PI
 
+@Suppress("unused")
 open class MotorEx (
     val name: () -> String,
     val type: MotorType = MotorType.ANDYMARK_NEVEREST,
@@ -45,22 +43,29 @@ open class MotorEx (
         (inches * ratio * type.TICKS_PER_REVOLUTION / diameter / PI).toInt()
 
     // DcMotorEx Methods
+    
     open fun setMotorEnable() = motor.setMotorEnable()
     open fun setMotorDisable() = motor.setMotorDisable()
-    open fun isMotorEnabled() = motor.isMotorEnabled
-    open fun setVelocity(angularRate: Double) = motor.setVelocity(angularRate)
+    open val isMotorEnabled
+        get() = motor.isMotorEnabled
     open fun setVelocity(angularRate: Double, unit: AngleUnit) = motor.setVelocity(angularRate, unit)
-    open fun getVelocity() = motor.velocity
+    open var velocity
+        get() = motor.velocity
+        set(it) {
+            motor.velocity = it
+        }
     open fun getVelocity(unit: AngleUnit) = motor.getVelocity(unit)
-    @Deprecated("Use setPIDFCoefficients instead")
-    open fun setPIDCoefficients(runMode: DcMotor.RunMode, pidCoefficients: PIDCoefficients) =
+    @Deprecated("Replace with setPIDFCoefficients",
+        replaceWith = ReplaceWith("setPIDFCoefficients"))
+    open fun setPIDCoefficients(runMode: RunMode, pidCoefficients: PIDCoefficients) =
+        @Suppress("DEPRECATION")
         motor.setPIDCoefficients(runMode, pidCoefficients)
-    open fun setPIDFCoefficients(runMode: DcMotor.RunMode, pidfCoefficients: PIDFCoefficients) =
+    open fun setPIDFCoefficients(runMode: RunMode, pidfCoefficients: PIDFCoefficients) =
         motor.setPIDFCoefficients(runMode, pidfCoefficients)
     open fun setVelocityPIDFCoefficients(p: Double, i: Double, d: Double, f: Double) =
         motor.setVelocityPIDFCoefficients(p, i, d, f)
     open fun setPositionPIDFCoefficients(p: Double) = motor.setPositionPIDFCoefficients(p)
-    open fun getPIDFCoefficients(runMode: DcMotor.RunMode) = motor.getPIDFCoefficients(runMode)
+    open fun getPIDFCoefficients(runMode: RunMode): PIDFCoefficients? = motor.getPIDFCoefficients(runMode)
     open fun setTargetPositionTolerance(tolerance: Int) {
         motor.targetPositionTolerance = tolerance
     }
@@ -68,46 +73,52 @@ open class MotorEx (
     open fun getCurrent(unit: CurrentUnit) = motor.getCurrent(unit)
     open fun getCurrentAlert(unit: CurrentUnit) = motor.getCurrentAlert(unit)
     open fun setCurrentAlert(current: Double, unit: CurrentUnit) = motor.setCurrentAlert(current, unit)
-    open fun isOverCurrent() = motor.isOverCurrent
+    open val isOverCurrent
+        get() = motor.isOverCurrent
 
     // DcMotor Methods
-    open fun getMotorType() = motor.motorType
-    open fun setMotorType(motorType: MotorConfigurationType?) {
-        motor.motorType = motorType
-    }
-    open fun getController() = motor.controller
-    open fun getPortNumber() = motor.portNumber
-    open fun setZeroPowerBehavior(zeroPowerBehavior: ZeroPowerBehavior?) {
-        motor.zeroPowerBehavior = zeroPowerBehavior
-    }
-    open fun getZeroPowerBehavior() = motor.zeroPowerBehavior
-    @Deprecated(
-        """This method is deprecated in favor of direct use of
-            {@link #setZeroPowerBehavior(ZeroPowerBehavior) setZeroPowerBehavior()} and
-            {@link #setPower(double) setPower()}."""
-    )
-    open fun setPowerFloat() = motor.setPowerFloat()
-    open fun getPowerFloat() = motor.powerFloat
-    open fun setTargetPosition(position: Int) {
-        motor.targetPosition = position
-    }
-    open fun getTargetPosition() = motor.targetPosition
-    open fun isBusy() = motor.isBusy
-    open fun getCurrentPosition() = motor.currentPosition
-    open fun setMode(mode: RunMode?) {
-        motor.mode = mode
-    }
-    open fun getMode() = motor.mode
+    open var motorType: MotorConfigurationType
+        get() = motor.motorType
+        set(it) {
+            motor.motorType = it
+        }
+    open val controller: DcMotorController?
+        get() = motor.controller
+    open val portNumber
+        get() = motor.portNumber
+    open var zeroPowerBehavior: ZeroPowerBehavior?
+        get() = motor.zeroPowerBehavior
+        set(it) {
+            motor.zeroPowerBehavior = it
+        }
+    open val powerFloat
+        get() = motor.powerFloat
+    open var targetPosition
+        get() = motor.targetPosition
+        set(it) {
+            motor.targetPosition = it
+        }
+    open val isBusy
+        get() = motor.isBusy
+    open val currentPosition
+        get() = motor.currentPosition
+    open var mode: RunMode?
+        get() = motor.mode
+        set(it) {
+            motor.mode = it
+        }
 
     // DcMotorSimple methods
-    open fun setDirection(direction: Direction?) {
-        motor.direction = direction
-    }
-    open fun getDirection() = motor.direction
-    open fun setPower(power: Double) {
-        motor.power = power
-    }
-    open fun getPower() = motor.power
+    open var direction: Direction?
+        get() = motor.direction
+        set(it) {
+            motor.direction = it
+        }
+    open var power
+        get() = motor.power
+        set(it) {
+            motor.power = it
+        }
 
     enum class MotorType(
         val TICKS_PER_REVOLUTION: Int,

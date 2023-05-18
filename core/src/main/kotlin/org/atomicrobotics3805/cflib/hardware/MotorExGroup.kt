@@ -1,13 +1,11 @@
 package org.atomicrobotics3805.cflib.hardware
 
-import com.qualcomm.robotcore.hardware.DcMotor
-import com.qualcomm.robotcore.hardware.DcMotorSimple
-import com.qualcomm.robotcore.hardware.PIDCoefficients
-import com.qualcomm.robotcore.hardware.PIDFCoefficients
+import com.qualcomm.robotcore.hardware.*
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit
 
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class MotorExGroup(
     vararg val motors: MotorEx
 ): MotorEx(motors[0].name, motors[0].type, motors[0].ratio, motors[0]._direction) {
@@ -23,22 +21,19 @@ class MotorExGroup(
             it.setMotorDisable()
         }
     }
-    override fun isMotorEnabled() = motors[0].isMotorEnabled()
-    override fun setVelocity(angularRate: Double) {
-        motors.forEach {
-            it.setVelocity(angularRate)
+    override var velocity
+        get() = motor.velocity
+        set(value) {
+            motors.forEach {
+                it.velocity = value
+            }
         }
-    }
-    override fun setVelocity(angularRate: Double, unit: AngleUnit) {
-        motors.forEach {
-            it.setVelocity(angularRate, unit)
-        }
-    }
-    override fun getVelocity() = motors[0].getVelocity()
     override fun getVelocity(unit: AngleUnit) = motors[0].getVelocity(unit)
-    @Deprecated("Use setPIDFCoefficients instead")
+    @Deprecated("Replace with setPIDFCoefficients",
+        replaceWith = ReplaceWith("setPIDFCoefficients"))
     override fun setPIDCoefficients(runMode: DcMotor.RunMode, pidCoefficients: PIDCoefficients) {
         motors.forEach {
+            @Suppress("DEPRECATION")
             it.setPIDCoefficients(runMode, pidCoefficients)
         }
     }
@@ -71,62 +66,64 @@ class MotorExGroup(
             it.setCurrentAlert(current, unit)
         }
     }
-    override fun isOverCurrent() = motors[0].isOverCurrent()
+    override val isOverCurrent
+        get() = motor.isOverCurrent
 
     // DcMotor Methods
-    override fun getMotorType() = motor.motorType
-    override fun setMotorType(motorType: MotorConfigurationType?) {
-        motors.forEach {
-            it.setMotorType(motorType)
+    override var motorType: MotorConfigurationType
+        get() = motor.motorType
+        set(value) {
+            motors.forEach {
+                it.motorType = value
+            }
         }
-    }
-    override fun getController() = motor.controller
-    override fun getPortNumber() = motor.portNumber
-    override fun setZeroPowerBehavior(zeroPowerBehavior: DcMotor.ZeroPowerBehavior?) {
-        motors.forEach {
-            it.setZeroPowerBehavior(zeroPowerBehavior)
+    override val controller: DcMotorController?
+        get() = motor.controller
+    override val portNumber
+        get() = motor.portNumber
+    override var zeroPowerBehavior: DcMotor.ZeroPowerBehavior?
+        get() = motor.zeroPowerBehavior
+        set(value) {
+            motors.forEach {
+                it.zeroPowerBehavior = value
+            }
         }
-    }
-    override fun getZeroPowerBehavior() = motor.zeroPowerBehavior
-    @Deprecated(
-        """This method is deprecated in favor of direct use of
-            {@link #setZeroPowerBehavior(ZeroPowerBehavior) setZeroPowerBehavior()} and
-            {@link #setPower(double) setPower()}."""
-    )
-    override fun setPowerFloat() {
-        motors.forEach{
-            it.setPowerFloat()
+    override val powerFloat
+        get() = motor.powerFloat
+    override var targetPosition
+        get() = motor.targetPosition
+        set(value) {
+            motors.forEach {
+                it.targetPosition = value
+            }
         }
-    }
-    override fun getPowerFloat() = motor.powerFloat
-    override fun setTargetPosition(position: Int) {
-        motors.forEach {
-            it.setTargetPosition(position)
+    override val isBusy
+        get() = motor.isBusy
+    override val currentPosition
+        get() = motor.currentPosition
+    override var mode: DcMotor.RunMode?
+        get() = motor.mode
+        set(value) {
+            motors.forEach {
+                it.mode = value
+            }
         }
-    }
-    override fun getTargetPosition() = motor.targetPosition
-    override fun isBusy() = motor.isBusy
-    override fun getCurrentPosition() = motor.currentPosition
-    override fun setMode(mode: DcMotor.RunMode?) {
-        motors.forEach {
-            it.setMode(mode)
-        }
-    }
-    override fun getMode() = motor.mode
 
     // DcMotorSimple methods
-    override fun setDirection(direction: DcMotorSimple.Direction?) {
-        motors.forEach {
-            it.setDirection(direction)
+    override var direction: DcMotorSimple.Direction?
+        get() = motor.direction
+        set(value) {
+            motors.forEach {
+                it.direction = value
+            }
         }
-    }
-    override fun getDirection() = motor.direction
-    override fun setPower(power: Double) {
-        motors.forEach {
-            it.setPower(power)
+    override var power
+        get() = motor.power
+        set(value) {
+            motors.forEach {
+                it.power = value
+            }
         }
-    }
-    override fun getPower() = motor.power
 
 
     override fun initialize() {

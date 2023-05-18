@@ -25,6 +25,7 @@ import com.qualcomm.robotcore.hardware.Servo
 import com.qualcomm.robotcore.util.ElapsedTime
 import org.atomicrobotics3805.cflib.Command
 import org.atomicrobotics3805.cflib.CommandScheduler
+import org.atomicrobotics3805.cflib.hardware.ServoEx
 import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 import kotlin.math.abs
 
@@ -40,7 +41,7 @@ import kotlin.math.abs
  * @param interruptible whether this command can be interrupted or not
  */
 @Suppress("unused")
-class MoveServo(private val servo: Servo,
+class MoveServo(private val servo: ServoEx,
                 private val position: Double,
                 private val maxTime: Double,
                 override val requirements: List<Subsystem> = arrayListOf(),

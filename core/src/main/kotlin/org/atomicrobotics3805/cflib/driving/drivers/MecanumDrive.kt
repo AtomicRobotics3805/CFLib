@@ -100,27 +100,27 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
         motors = listOf(leftFront, leftBack, rightBack, rightFront)
         // sets the achieveableMaxRPMFraction for each motor to 1.0
         for (motor in motors) {
-            val motorConfigurationType = motor.getMotorType().clone()
+            val motorConfigurationType = motor.motorType.clone()
             motorConfigurationType.achieveableMaxRPMFraction = 1.0
-            motor.setMotorType(motorConfigurationType)
+            motor.motorType = motorConfigurationType
         }
         // sets the RunMode for each motor
         if (constants.IS_RUN_USING_ENCODER) {
             for (motor in motors) {
-                motor.setMode(RunMode.STOP_AND_RESET_ENCODER)
-                motor.setMode(RunMode.RUN_USING_ENCODER)
+                motor.mode = RunMode.STOP_AND_RESET_ENCODER
+                motor.mode =RunMode.RUN_USING_ENCODER
             }
             // sets the motors' PIDFCoefficients
             setPIDFCoefficients(constants.MOTOR_VEL_PID)
         }
         else {
             for (motor in motors) {
-                motor.setMode(RunMode.RUN_WITHOUT_ENCODER)
+                motor.mode = RunMode.RUN_WITHOUT_ENCODER
             }
         }
         // sets the zero power behavior for each motor
         for (motor in motors) {
-            motor.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE)
+            motor.zeroPowerBehavior = ZeroPowerBehavior.BRAKE
         }
     }
 
@@ -131,7 +131,7 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     fun getWheelPositions(): List<Double> {
         val wheelPositions: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelPositions.add(constants.encoderTicksToInches(motor.getCurrentPosition().toDouble()))
+            wheelPositions.add(constants.encoderTicksToInches(motor.currentPosition.toDouble()))
         }
         return wheelPositions
     }
@@ -143,7 +143,7 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
     fun getWheelVelocities(): List<Double> {
         val wheelVelocities: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelVelocities.add(constants.encoderTicksToInches(motor.getVelocity()))
+            wheelVelocities.add(constants.encoderTicksToInches(motor.velocity))
         }
         return wheelVelocities
     }
@@ -156,10 +156,10 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
      * @param frontRight the power for the front right motor
      */
     private fun setMotorPowers(frontLeft: Double, backLeft: Double, backRight: Double, frontRight: Double) {
-        leftFront.setPower(frontLeft)
-        leftBack.setPower(backLeft)
-        rightBack.setPower(backRight)
-        rightFront.setPower(frontRight)
+        leftFront.power = frontLeft
+        leftBack.power = backLeft
+        rightBack.power = backRight
+        rightFront.power = frontRight
     }
 
     /**
@@ -220,7 +220,7 @@ class MecanumDrive(val mecanumDriveConstants: MecanumDriveConstants,
 
     fun setMode(mode: RunMode) {
         for (motor in motors) {
-            motor.setMode(mode)
+            motor.mode = mode
         }
     }
 }

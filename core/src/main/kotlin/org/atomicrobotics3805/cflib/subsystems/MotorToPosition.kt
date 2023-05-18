@@ -24,6 +24,7 @@ import org.atomicrobotics3805.cflib.CommandScheduler
 import org.atomicrobotics3805.cflib.Constants
 import org.atomicrobotics3805.cflib.utilCommands.TelemetryCommand
 import com.qualcomm.robotcore.util.RobotLog
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -43,7 +44,7 @@ import kotlin.math.sign
  */
 @Suppress("MemberVisibilityCanBePrivate")
 open class MotorToPosition(
-    protected val motor: DcMotor,
+    protected val motor: MotorEx,
     protected val targetPosition: Int,
     protected var speed: Double,
     override val requirements: List<Subsystem> = arrayListOf(),
@@ -113,7 +114,7 @@ open class MotorToPosition(
                 val currentSpeed = abs(positions[positions.size - 1] - motor.currentPosition)
                 if (currentSpeed == 0 || lastSpeed / currentSpeed >= minimumChangeForStall) {
                     CommandScheduler.scheduleCommand(
-                        TelemetryCommand(3.0, "Motor " + motor.deviceName + " Stalled!")
+                        TelemetryCommand(3.0, "Motor " + motor.name + " Stalled!")
                     )
                     isDone = true
                 }

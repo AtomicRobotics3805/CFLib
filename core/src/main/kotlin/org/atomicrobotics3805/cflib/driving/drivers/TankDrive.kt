@@ -90,27 +90,27 @@ class TankDrive(constants: TankDriveConstants,
         motors = listOf(left, right)
         // sets the achieveableMaxRPMFraction for each motor to 1.0
         for (motor in motors) {
-            val motorConfigurationType = motor.getMotorType().clone()
+            val motorConfigurationType = motor.motorType.clone()
             motorConfigurationType.achieveableMaxRPMFraction = 1.0
-            motor.setMotorType(motorConfigurationType)
+            motor.motorType = motorConfigurationType
         }
         // sets the RunMode for each motor
         if (constants.IS_RUN_USING_ENCODER) {
             for (motor in motors) {
-                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER)
-                motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER)
+                motor.mode = DcMotor.RunMode.STOP_AND_RESET_ENCODER
+                motor.mode = DcMotor.RunMode.RUN_USING_ENCODER
             }
             // sets the motors' PIDFCoefficients
             setPIDFCoefficients(constants.MOTOR_VEL_PID)
         }
         else {
             for (motor in motors) {
-                motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER)
+                motor.mode = DcMotor.RunMode.RUN_WITHOUT_ENCODER
             }
         }
         // sets the zero power behavior for each motor
         for (motor in motors) {
-            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
+            motor.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.BRAKE
         }
     }
 
@@ -121,7 +121,7 @@ class TankDrive(constants: TankDriveConstants,
     fun getWheelPositions(): List<Double> {
         val wheelPositions: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelPositions.add(constants.encoderTicksToInches(motor.getCurrentPosition().toDouble()))
+            wheelPositions.add(constants.encoderTicksToInches(motor.currentPosition.toDouble()))
         }
         return wheelPositions
     }
@@ -133,7 +133,7 @@ class TankDrive(constants: TankDriveConstants,
     fun getWheelVelocities(): List<Double> {
         val wheelVelocities: MutableList<Double> = ArrayList()
         for (motor in motors) {
-            wheelVelocities.add(constants.encoderTicksToInches(motor.getVelocity()))
+            wheelVelocities.add(constants.encoderTicksToInches(motor.velocity))
         }
         return wheelVelocities
     }
@@ -144,8 +144,8 @@ class TankDrive(constants: TankDriveConstants,
      * @param rightPower the power for the right motor
      */
     private fun setMotorPowers(leftPower: Double, rightPower: Double) {
-        left.setPower(leftPower)
-        right.setPower(rightPower)
+        left.power = leftPower
+        right.power = rightPower
     }
 
     /**

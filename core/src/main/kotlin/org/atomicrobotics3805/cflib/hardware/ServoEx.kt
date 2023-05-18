@@ -1,7 +1,9 @@
 package org.atomicrobotics3805.cflib.hardware
 
+import com.qualcomm.robotcore.hardware.HardwareDevice
 import org.atomicrobotics3805.cflib.Constants.opMode
 import com.qualcomm.robotcore.hardware.Servo
+import com.qualcomm.robotcore.hardware.ServoController
 
 open class ServoEx(
     val name: () -> String,
@@ -35,25 +37,32 @@ open class ServoEx(
     }
     
     // Servo Methods
-    open fun getManufacturer() = servo.manufacturer
-    open fun getDeviceName() = servo.deviceName
-    open fun getConnectionInfo() = servo.connectionInfo
-    open fun getVersion() = servo.version
+    open val manufacturer: HardwareDevice.Manufacturer?
+        get() = servo.manufacturer
+    open val deviceName: String?
+        get() = servo.deviceName
+    open val connectionInfo: String?
+        get() = servo.connectionInfo
+    open val version
+        get() = servo.version
     open fun resetDeviceConfigurationForOpMode() = servo.resetDeviceConfigurationForOpMode()
     open fun close() = servo.close()
-    open fun getController() = servo.controller
-    open fun getPortNumber() = servo.portNumber
-    open fun setDirection(direction: Servo.Direction?) {
-        servo.direction = direction
-    }
-    open fun getDirection() = servo.direction
-    open fun setPosition(position: Double) {
-        servo.position = position
-    }
-    open fun getPosition() = servo.position
+    open val controller: ServoController?
+        get() = servo.controller
+    open val portNumber
+        get() = servo.portNumber
+    open var direction: Servo.Direction?
+        get() = servo.direction
+        set(it) {
+            servo.direction = it
+        }
+    open var position
+        get() = servo.position
+        set(it) {
+            servo.position = it
+        }
     open fun scaleRange(min: Double, max: Double) = servo.scaleRange(min, max)
 
-    // TODO complete this
     enum class ServoType(
         val RPM: Double,
         val RANGE_REVOLUTIONS: Double,

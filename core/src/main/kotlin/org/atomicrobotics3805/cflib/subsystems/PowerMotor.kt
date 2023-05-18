@@ -20,6 +20,7 @@ import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 import org.atomicrobotics3805.cflib.Command
 import com.qualcomm.robotcore.util.RobotLog
+import org.atomicrobotics3805.cflib.hardware.MotorEx
 
 /**
  * This command powers a motor and sets it to a certain mode if one is supplied.
@@ -31,7 +32,7 @@ import com.qualcomm.robotcore.util.RobotLog
  * @param interruptible whether this command can be interrupted or not
  */
 class PowerMotor(
-    private val motor: DcMotorSimple,
+    private val motor: MotorEx,
     private val power: Double,
     private val mode: DcMotor.RunMode? = null,
     override val requirements: List<Subsystem> = arrayListOf(),
@@ -40,7 +41,7 @@ class PowerMotor(
 ) : Command() {
 
     override fun start() {
-        if (mode != null && motor is DcMotor) {
+        if (mode != null) {
             motor.mode = mode
         }
         motor.power = power

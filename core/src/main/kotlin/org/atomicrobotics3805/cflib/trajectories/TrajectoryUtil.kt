@@ -36,6 +36,7 @@ val Double.switchColorAngle get () = (if (color == BLUE) this else 360 - this)
 val Double.switchApproachTangentAngle get () = (if (color == BLUE) this else this - 180)
 val Double.switchColor get () = (if (color == BLUE) this else this * -1)
 val Double.flipAlongX36 get() = (if (color == BLUE) this else 72 - this)
+val Double.translateAcrossField get() = (if (color == BLUE) this else (72 - this) * -1)
 
 /** Returns the Vector2d of a Pose2d **/
 val Pose2d.v : Vector2d get() = (this.vec())

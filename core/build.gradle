@@ -14,7 +14,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.apache.commons:commons-math3:3.6.1'
     implementation 'com.acmerobotics.roadrunner:core:0.5.5'
-    implementation 'com.github.NoahBres:MeepMeep:2.0.2'
+    implementation 'com.github.NoahBres:MeepMeep:2.0.3'
 }
 
 java {
@@ -30,7 +30,7 @@ afterEvaluate {
 
                 groupId = 'org.atomicrobotics3805'
                 artifactId = 'cflib'
-                version = '0.0.1'
+                version = '2.0.2'
             }
         }
     }

@@ -178,6 +178,8 @@ When submitting your PR, please *make sure to set the base branch to `developmen
 
 To test code on branches other than `main`, follow the following scheme: `com.github.AtomicRobotics3805:CFLib:<branch-name>-SNAPSHOT`. This will give you the latest commit of a specific branch. Refer to [Jitpack](https://jitpack.io) for more details. 
 
+**NOTE FOR DEVELOPMENT TEAM**: When a commit is merged from `development` into `main`, you must **ALWAYS** use the `squash and merge` method. This is because we want to keep the main history as clean and concise as possible, where each commit on main directly corresponds to a new version of CFLib. When merging into `development`, it is preferred if you create a merge commit, but it isn't as important.
+
 ## Join The Development Team
 If you have been contributing to CFLib for a long time, or have made many important contributions, you may be considered for joining the core development team. You will gain a special role in the [CFLib Discord](https://discord.com/invite/PjP9Ze6fkX) and will gain additional abilities in the GitHub repository such as approving pull requests.
 

@@ -10,7 +10,8 @@ class MotorExGroup(
     vararg val motors: MotorEx
 ): MotorEx(motors[0].name, motors[0].type, motors[0].ratio, motors[0]._direction) {
 
-
+    override val motor: DcMotorEx
+        get() = motors[0].motor
     override fun setMotorEnable() {
         motors.forEach {
             it.setMotorEnable()

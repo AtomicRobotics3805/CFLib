@@ -49,8 +49,7 @@ class DriverControlled(
 
     enum class POV {
         ROBOT_CENTRIC,
-        FIELD_CENTRIC,
-        DRIVER_CENTRIC
+        FIELD_CENTRIC
     }
 
     override val _isDone = false
@@ -60,19 +59,11 @@ class DriverControlled(
      */
     override fun execute() {
         val drivePower: Pose2d
-        if (pov != POV.ROBOT_CENTRIC) {
+        if (pov == POV.FIELD_CENTRIC) {
             val angle: Double = atan2((if(reverseStraight) -gamepad.left_stick_y else gamepad.left_stick_y), (if(reverseStrafe) -gamepad.left_stick_x else gamepad.left_stick_x)).toDouble()
 
             var adjustedAngle = angle + drive.poseEstimate.heading
 
-            if (pov == POV.DRIVER_CENTRIC) {
-                if (color == Constants.Color.BLUE) {
-                    adjustedAngle -= 90.0.toRadians
-                }
-                else {
-                    adjustedAngle += 90.0.toRadians
-                }
-            }
             val totalPower = sqrt(gamepad.left_stick_y.pow(2) + gamepad.left_stick_x.pow(2))
             drivePower = Pose2d(
                 totalPower * sin(adjustedAngle),

@@ -24,6 +24,7 @@ import org.atomicrobotics3805.cflib.Constants.color
 import org.atomicrobotics3805.cflib.Constants.drive
 import org.atomicrobotics3805.cflib.subsystems.Subsystem
 import org.atomicrobotics3805.cflib.trajectories.toRadians
+import org.atomicrobotics3805.cflib.utilCommands.CustomCommand
 import kotlin.math.*
 
 /**
@@ -54,6 +55,15 @@ class DriverControlled(
 
     override val _isDone = false
 
+    // Rotational offset, in radians
+    private var fieldCentricOffset: Double = 0.0
+
+    /**
+     * Updates the rotational offset of the robot to the current robot heading.
+     */
+    val updateFieldCentricOffset : Command
+        get() = CustomCommand(_start = { fieldCentricOffset = drive.poseEstimate.heading })
+
     /**
      * Calculates and sets the robot's drive power
      */
@@ -63,6 +73,8 @@ class DriverControlled(
             val angle: Double = atan2((if(reverseStraight) -gamepad.left_stick_y else gamepad.left_stick_y), (if(reverseStrafe) -gamepad.left_stick_x else gamepad.left_stick_x)).toDouble()
 
             var adjustedAngle = angle + drive.poseEstimate.heading
+
+            adjustedAngle -= fieldCentricOffset
 
             val totalPower = sqrt(gamepad.left_stick_y.pow(2) + gamepad.left_stick_x.pow(2))
             drivePower = Pose2d(
